@@ -83,5 +83,4 @@ UNION ALL
 (SELECT DEPARTMENT, COUNT(DEPARTMENT) AS TOTAL_EMPLOYEES FROM Worker GROUP BY DEPARTMENT ORDER BY TOTAL_EMPLOYEES DESC LIMIT 1);
 ```
 
-## License
-This project is open-source and available for use under the MIT License.
+
