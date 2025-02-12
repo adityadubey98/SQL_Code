@@ -82,5 +82,66 @@ ORDER BY DEPARTMENT;
 UNION ALL
 (SELECT DEPARTMENT, COUNT(DEPARTMENT) AS TOTAL_EMPLOYEES FROM Worker GROUP BY DEPARTMENT ORDER BY TOTAL_EMPLOYEES DESC LIMIT 1);
 ```
+### Union and Union All
+```sql
+SELECT WORKER_ID FROM Worker UNION SELECT FIRST_NAME FROM Worker;
+SELECT DEPARTMENT, WORKER_ID FROM Worker WHERE DEPARTMENT = 'HR' UNION SELECT DEPARTMENT, WORKER_ID FROM Worker WHERE DEPARTMENT = 'Account' ORDER BY WORKER_ID;
+```
+### Case Statement
+```sql
+SELECT WORKER_ID, FIRST_NAME, DEPARTMENT,
+CASE
+    WHEN SALARY > 300000 THEN 'Rich people'
+    WHEN SALARY BETWEEN 100000 AND 300000 THEN 'Middle stage'
+    ELSE 'Poor people'
+END AS People_stage_wise
+FROM Worker;
+```
 
+### Additional Queries
+```sql
+-- Exclude certain first names
+SELECT * FROM Worker WHERE FIRST_NAME NOT IN ('Vipul', 'Satish');
+
+-- First name ending with 'a'
+SELECT * FROM Worker WHERE FIRST_NAME LIKE '%a';
+
+-- Workers with first names ending in 'h' and exactly 6 characters long
+SELECT * FROM Worker WHERE FIRST_NAME LIKE '_____h' AND LENGTH(FIRST_NAME) = 6;
+
+-- Count workers per department in descending order
+SELECT DEPARTMENT, COUNT(*) AS Worker_Count FROM Worker GROUP BY DEPARTMENT ORDER BY Worker_Count DESC;
+```
+
+### Additional Tables
+
+## vitBhopal Table
+```sql
+CREATE TABLE vitBhopal (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    department VARCHAR(25) NOT NULL
+);
+INSERT INTO vitBhopal VALUES (104, 'Karthik', 'cs'), (103, 'Arun', 'cs');
+```
+
+## vit Table
+```sql
+CREATE TABLE vit (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    college VARCHAR(25) NOT NULL
+);
+INSERT INTO vit VALUES (104, 'Karthik', 'chennai'), (103, 'Arun', 'bhopal');
+```
+
+## Fetch Winner of the Year
+```sql
+SELECT name AS WinnerOfTheYear FROM vitBhopal WHERE id IN (SELECT id FROM vit WHERE college = 'bhopal');
+```
+
+## Show One Row Twice
+```sql
+(SELECT * FROM Worker WHERE WORKER_ID = 1) UNION ALL (SELECT * FROM Worker WHERE WORKER_ID = 1);
+```
 
