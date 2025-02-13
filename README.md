@@ -429,6 +429,42 @@ INSERT INTO Title (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
 ```
 
 
+## SQL Queries
+
+### 1. Retrieve all Worker details ordered by FIRST_NAME (Ascending)
+```sql
+SELECT * FROM Worker ORDER BY FIRST_NAME ASC;
+```
+
+### 2. Retrieve all Worker details ordered by FIRST_NAME (Ascending) and DEPARTMENT (Descending)
+```sql
+SELECT * FROM Worker ORDER BY FIRST_NAME ASC, DEPARTMENT DESC;
+```
+
+### 3. Retrieve details of workers excluding first names 'Vipul' and 'Satish'
+```sql
+SELECT * FROM Worker WHERE FIRST_NAME NOT IN ('Vipul', 'Satish');
+```
+
+### 4. Retrieve details of workers whose FIRST_NAME ends with 'h' and contains six alphabets
+```sql
+SELECT * FROM Worker WHERE FIRST_NAME LIKE '_____h';
+```
+
+### 5. Fetch the count of employees working in the 'Admin' department
+```sql
+SELECT COUNT(*) FROM Worker WHERE DEPARTMENT = 'Admin';
+```
+
+### 6. Fetch worker names with salaries between 50,000 and 100,000
+```sql
+SELECT FIRST_NAME, LAST_NAME FROM Worker WHERE SALARY BETWEEN 50000 AND 100000;
+```
+
+
+
+
+
 
 
 
